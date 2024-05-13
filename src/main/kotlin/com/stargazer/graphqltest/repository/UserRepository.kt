@@ -27,5 +27,4 @@ class UserRepositoryImpl : QuerydslRepositorySupport(UserEntity::class.java), Us
         return result
     }
 
-
 }
