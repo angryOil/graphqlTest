@@ -1,7 +1,7 @@
 package com.stargazer.graphqltest.service
 
-import com.stargazer.graphqltest.entity.Music
-import com.stargazer.graphqltest.repository.MusicRepository
+import com.stargazer.graphqltest.entity.rdb.Music
+import com.stargazer.graphqltest.repository.rdb.MusicRepository
 import org.springframework.stereotype.Service
 
 @Service

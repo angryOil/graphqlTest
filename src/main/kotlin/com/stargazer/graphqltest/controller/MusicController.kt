@@ -1,6 +1,6 @@
 package com.stargazer.graphqltest.controller
 
-import com.stargazer.graphqltest.entity.Music
+import com.stargazer.graphqltest.entity.rdb.Music
 import com.stargazer.graphqltest.service.MusicService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping

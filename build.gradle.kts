@@ -29,6 +29,14 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    // mongodb
+
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    implementation("com.querydsl:querydsl-mongodb:5.0.0") {
+        exclude(group = "org.mongodb", module = "mongo-java-driver")
+    }
+
     // dsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
@@ -36,7 +44,7 @@ dependencies {
     kapt("jakarta.persistence:jakarta.persistence-api")
 
     //swagger
-    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
     // graphQL
     implementation("org.springframework.boot:spring-boot-starter-graphql")

@@ -1,6 +1,6 @@
 package com.stargazer.graphqltest.controller
 
-import com.stargazer.graphqltest.entity.UserEntity
+import com.stargazer.graphqltest.entity.rdb.UserEntity
 import com.stargazer.graphqltest.service.UserService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

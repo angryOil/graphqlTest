@@ -1,10 +1,9 @@
-package com.stargazer.graphqltest.entity
+package com.stargazer.graphqltest.entity.rdb
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import java.util.*
 
 @Entity
 class Music(
