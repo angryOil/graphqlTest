@@ -1,7 +1,7 @@
-package com.stargazer.graphqltest.repository
+package com.stargazer.graphqltest.repository.rdb
 
-import com.stargazer.graphqltest.entity.QUserEntity
-import com.stargazer.graphqltest.entity.UserEntity
+import com.stargazer.graphqltest.entity.rdb.QUserEntity
+import com.stargazer.graphqltest.entity.rdb.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository
@@ -26,6 +26,5 @@ class UserRepositoryImpl : QuerydslRepositorySupport(UserEntity::class.java), Us
 
         return result
     }
-
 
 }
