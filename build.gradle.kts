@@ -29,10 +29,14 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    // dsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("jakarta.annotation:jakarta.annotation-api")
     kapt("jakarta.persistence:jakarta.persistence-api")
+
+    //swagger
+    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
 
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
