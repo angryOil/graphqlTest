@@ -9,3 +9,10 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+  graphql:
+    graphiql:
+      enabled: true # web browser 접속
+    schema:
+      printer:
+        enabled: true #graphql 콘솔 출력

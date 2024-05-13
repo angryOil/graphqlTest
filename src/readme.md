@@ -21,6 +21,12 @@ build.gradle.kts 추가
         kapt("jakarta.annotation:jakarta.annotation-api")
         kapt("jakarta.persistence:jakarta.persistence-api")
 
+        // Q클래스 위치 지정
+    kotlin.sourceSets.main {
+        println("kotlin sourceSets builDir:: $buildDir")
+        setBuildDir("$buildDir")
+    }
+
 config.kt 파일 작성
 
     @Configuration
@@ -89,4 +95,59 @@ swagger config 추가
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
+</details>
+
+
+<details>
+    <summary>graphql</summary>
+
+
+build.gradle.kts 의존성 추가
+    
+       implementation("org.springframework.boot:spring-boot-starter-graphql")
+
+resources/graphql/schema.graphqls 파일 작성
+    
+    type Music{
+    id: ID!
+    title: String!
+    artist: String
+    }
+    
+    type Query {
+    music(title:String!): [Music]
+    }
+    
+    type Mutation{
+    createMusic(title:String!, artist:String): Music
+    }
+
+yml 파일 내용 추가
+    
+    graphql:
+        graphiql:
+          enabled: true # web browser 접속
+        schema:
+          printer:
+            enabled: true #graphql 콘솔 출력
+
+controller 매칭
+
+    @RestController("/music")
+    class MusicController(
+    private val musicService: MusicService,
+    ) {
+    
+        @QueryMapping
+        fun music(@Argument title: String): List<Music> {
+            return musicService.findMusic(title)
+        }
+    
+        @MutationMapping
+        fun createMusic(@Argument title: String, @Argument artist: String): Long {
+            return musicService.registerMusic(title, artist)
+        }
+    }
+
+[http://localhost:8080/graphiql](http://localhost:8080/graphiql) 접속후 확인  
 </details>

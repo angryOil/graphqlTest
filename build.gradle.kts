@@ -38,6 +38,8 @@ dependencies {
     //swagger
     implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
+    // graphQL
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
 
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
