@@ -16,3 +16,12 @@ spring:
     schema:
       printer:
         enabled: true #graphql 콘솔 출력
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mtest
+
+  main:
+    allow-bean-definition-overriding: true

@@ -1,21 +1,10 @@
 # 코틀린 스프링 설정 테스트 (3.xx 버전) 
 
 # 1. kotlin + jpa + dsl
-
-# 2. swagger
-
-# 3. graphQL
-
-# 4. noSQL 연동 
-
-
-
----
-
-<details> <summary> kotlin + jpa + dsl  </summary>
+<details> <summary>  kotlin + jpa + dsl </summary>
 
 build.gradle.kts 추가
-    
+
         implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
         kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
         kapt("jakarta.annotation:jakarta.annotation-api")
@@ -58,6 +47,8 @@ repo 서포터 파일 작성
     }
 </details>
 
+
+# 2. swagger
 <details>
 <summary>swagger</summary>
 
@@ -65,8 +56,8 @@ build.gradle.kts 의존성 추가
 
     implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
-swagger config 추가 
-    
+swagger config 추가
+
     package com.stargazer.graphqltest.config
 
     import io.swagger.v3.oas.models.OpenAPI
@@ -91,23 +82,23 @@ swagger config 추가
         }
     }
 
-실행후 작동 확인 
+실행후 작동 확인
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 </details>
 
-
+# 3. graphQL
 <details>
     <summary>graphql</summary>
 
 
 build.gradle.kts 의존성 추가
-    
+
        implementation("org.springframework.boot:spring-boot-starter-graphql")
 
 resources/graphql/schema.graphqls 파일 작성
-    
+
     type Music{
     id: ID!
     title: String!
@@ -123,7 +114,7 @@ resources/graphql/schema.graphqls 파일 작성
     }
 
 yml 파일 내용 추가
-    
+
     graphql:
         graphiql:
           enabled: true # web browser 접속
@@ -149,5 +140,63 @@ controller 매칭
         }
     }
 
-[http://localhost:8080/graphiql](http://localhost:8080/graphiql) 접속후 확인  
+[http://localhost:8080/graphiql](http://localhost:8080/graphiql) 접속후 확인
 </details>
+
+# 4. noSQL 연동 
+<details>
+    <summary>nosql(mongodb 연동)</summary>
+    
+
+build.gradle.kts 의존성 추가 
+
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    implementation("com.querydsl:querydsl-mongodb:5.0.0") {
+        exclude(group = "org.mongodb", module = "mongo-java-driver")  // dsl과 spring이 둘다 몽고 
+        // 드라이버를 가지고 있으므로 한쪽 제외
+    }
+
+
+yml 내용 추가 
+    
+      data:
+        mongodb:
+          host: localhost
+          port: 27017
+          database: mtest
+
+    main:
+        allow-bean-definition-overriding: true # 현 프로젝트에는 entity충돌로 오버라이딩 허용
+
+repo 작성
+
+    interface SearchRepoCustom {
+    fun searchAllByUserId(userId: Long): List<Search>
+    }
+    
+    interface SearchRepository : MongoRepository<Search, String>, SearchRepoCustom
+    
+    // 이 프로젝트에서는 mongo ,maria가 같이 있으므로 어떤걸 쓰는지 정확히 명시 
+    class SearchRepositoryImpl(@Qualifier("mongoTemplate") op: MongoOperations) : SearchRepoCustom, QuerydslRepositorySupport(op) {
+    private val table = QSearch.search
+    
+        override fun searchAllByUserId(userId: Long): List<Search> {
+            return from(table)
+                .where(table.userId.eq(userId))
+                .fetch()
+        }
+    }
+
+
+</details>
+
+
+---
+
+
+
+
+
+
+

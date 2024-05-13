@@ -1,4 +1,4 @@
-package com.stargazer.graphqltest.entity
+package com.stargazer.graphqltest.entity.rdb
 
 import jakarta.persistence.*
 

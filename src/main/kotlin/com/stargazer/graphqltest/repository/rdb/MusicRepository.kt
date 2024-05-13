@@ -1,7 +1,7 @@
-package com.stargazer.graphqltest.repository
+package com.stargazer.graphqltest.repository.rdb
 
-import com.stargazer.graphqltest.entity.Music
-import com.stargazer.graphqltest.entity.QMusic
+import com.stargazer.graphqltest.entity.rdb.Music
+import com.stargazer.graphqltest.entity.rdb.QMusic
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 

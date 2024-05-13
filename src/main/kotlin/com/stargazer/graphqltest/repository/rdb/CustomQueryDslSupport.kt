@@ -1,4 +1,4 @@
-package com.stargazer.graphqltest.repository
+package com.stargazer.graphqltest.repository.rdb
 
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext

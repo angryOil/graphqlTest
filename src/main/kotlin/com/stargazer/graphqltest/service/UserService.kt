@@ -1,7 +1,7 @@
 package com.stargazer.graphqltest.service
 
-import com.stargazer.graphqltest.entity.UserEntity
-import com.stargazer.graphqltest.repository.UserRepository
+import com.stargazer.graphqltest.entity.rdb.UserEntity
+import com.stargazer.graphqltest.repository.rdb.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
